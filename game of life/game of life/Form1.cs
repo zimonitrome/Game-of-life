@@ -18,10 +18,13 @@ namespace game_of_life
 
         public Form1(Cell[] boardCells, int width, int length)
         {
+            InitializeComponent();
             this._cells = boardCells;
             this._width = width;
             this._size = length;
-            InitializeComponent();
+
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            this.UpdateStyles();
         }
 
         private void board_MouseDown(object sender, MouseEventArgs e)
@@ -33,6 +36,16 @@ namespace game_of_life
                 int height = this.board.Height / _width;
                 g.FillRectangle(brush, e.X, e.Y, width, height);
                 brush.Dispose();
+            }
+        }
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams handleParam = base.CreateParams;
+                handleParam.ExStyle |= 0x02000000;   // WS_EX_COMPOSITED       
+                return handleParam;
             }
         }
 
@@ -48,7 +61,7 @@ namespace game_of_life
                 {
                     if (_cells[(i*_width)+j].IsAlive)
                     {
-                        e.Graphics.FillRectangle(brush, i*xSize,j*ySize, xSize, ySize);
+                        e.Graphics.FillRectangle(brush, j*xSize,i*ySize, xSize, ySize);
                     }
                 }
             }
@@ -61,7 +74,7 @@ namespace game_of_life
 
         private void startToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            timer1.Interval = 500;
+            //timer1.Interval = 500;
             timer1.Start();
         }
 
@@ -86,15 +99,55 @@ namespace game_of_life
             }
             Refresh();
         }
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            
+        }
 
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
-            _cells[32].IsAlive = true;
-            _cells[21].IsAlive = true;
-            _cells[22].IsAlive = true;
-            _cells[33].IsAlive = true;
+            var a = _width;
+            _cells[(50 * _width) + 21].IsAlive = true;
+            _cells[(50 * _width) + 22].IsAlive = true;
+            _cells[(51 * _width) + 21].IsAlive = true;
+            _cells[(51 * _width) + 22].IsAlive = true;
 
+            _cells[(51 * _width) + 31].IsAlive = true;
+            _cells[(51 * _width) + 32].IsAlive = true;
+            _cells[(52 * _width) + 30].IsAlive = true;
+            _cells[(52 * _width) + 32].IsAlive = true;
+            _cells[(53 * _width) + 30].IsAlive = true;
+            _cells[(53 * _width) + 31].IsAlive = true;
+
+            _cells[(53 * _width) + 38].IsAlive = true;
+            _cells[(53 * _width) + 39].IsAlive = true;
+            _cells[(54 * _width) + 38].IsAlive = true;
+            _cells[(54 * _width) + 40].IsAlive = true;
+            _cells[(55 * _width) + 38].IsAlive = true;
+
+            _cells[(48 * _width) + 45].IsAlive = true;
+            _cells[(48 * _width) + 46].IsAlive = true;
+            _cells[(49 * _width) + 44].IsAlive = true;
+            _cells[(49 * _width) + 46].IsAlive = true;
+            _cells[(50 * _width) + 44].IsAlive = true;
+            _cells[(50 * _width) + 45].IsAlive = true;
+
+            _cells[(48 * _width) + 56].IsAlive = true;
+            _cells[(48 * _width) + 57].IsAlive = true;
+            _cells[(49 * _width) + 56].IsAlive = true;
+            _cells[(49 * _width) + 57].IsAlive = true;
+
+            _cells[(55 * _width) + 57].IsAlive = true;
+            _cells[(55 * _width) + 58].IsAlive = true;
+            _cells[(56 * _width) + 57].IsAlive = true;
+            _cells[(56 * _width) + 59].IsAlive = true;
+            _cells[(57 * _width) + 57].IsAlive = true;
+
+            _cells[(58 * _width) + 46].IsAlive = true;
+            _cells[(58 * _width) + 47].IsAlive = true;
+            _cells[(58 * _width) + 48].IsAlive = true;
+            _cells[(59 * _width) + 46].IsAlive = true;
+            _cells[(60 * _width) + 47].IsAlive = true;
             Refresh();
         }
 
