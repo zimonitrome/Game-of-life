@@ -74,7 +74,7 @@ namespace game_of_life
 
         private void startToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //timer1.Interval = 500;
+            timer1.Interval = 500;
             timer1.Start();
         }
 
@@ -97,11 +97,11 @@ namespace game_of_life
                     _cells[(i * _width) + j].Rules();
                 }
             }
+            for (int i = 0; i < _size; i++)
+            {
+                _cells[i].updateState();
+            }
             Refresh();
-        }
-        protected override void OnPaintBackground(PaintEventArgs e)
-        {
-            
         }
 
         private void testToolStripMenuItem_Click(object sender, EventArgs e)

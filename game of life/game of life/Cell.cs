@@ -12,6 +12,7 @@ namespace game_of_life
     public class Cell
     {
         private bool _isAlive;
+        private bool _nextLivingState;
 
         private Dictionary<Oretation, Cell> _neighboor;
         
@@ -21,6 +22,7 @@ namespace game_of_life
         public Cell(bool isAlive = false)
         {
             _isAlive = isAlive;
+            _nextLivingState = false;
             _neighboor = new Dictionary<Oretation, Cell>();
         }
 
@@ -39,13 +41,17 @@ namespace game_of_life
             }
             if (IsAlive && !(aliveNeighboors == 2 || aliveNeighboors == 3))
             {
-                IsAlive = false;
+                _nextLivingState = false;
             }
             else if(aliveNeighboors == 3)
             {
-                IsAlive = true;
+                _nextLivingState = true;
             }
-            return IsAlive;
+            return _nextLivingState;
+        }
+        public bool updateState()
+        {
+            return this._isAlive = this._nextLivingState;
         }
 
         internal void SetConnections(ref Cell top, ref Cell right, ref Cell bottom, ref Cell left, ref Cell topRight, ref Cell bottomRight, ref Cell bottomLeft, ref Cell topLeft)
