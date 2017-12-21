@@ -49,6 +49,7 @@
             this.board.Click += new System.EventHandler(this.board_Click);
             this.board.Paint += new System.Windows.Forms.PaintEventHandler(this.board_Paint);
             this.board.MouseDown += new System.Windows.Forms.MouseEventHandler(this.board_MouseDown);
+            this.board.MouseMove += new System.Windows.Forms.MouseEventHandler(this.board_MouseMove);
             // 
             // menuStrip1
             // 

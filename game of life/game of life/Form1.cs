@@ -39,7 +39,7 @@ namespace game_of_life
             }
         }
 
-        protected override CreateParams CreateParams
+        protected override CreateParams CreateParams //make double draw buffer
         {
             get
             {
@@ -69,12 +69,15 @@ namespace game_of_life
 
         private void board_Click(object sender, EventArgs e)
         {
-
+            MouseEventArgs m = e as MouseEventArgs;
+            var i = (int)m.X / (this.board.Width / _width);
+            var j = (int)m.Y / (this.board.Height / _width);
+            _cells[j * _width + i].IsAlive = true;
+            Refresh();
         }
 
         private void startToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            timer1.Interval = 500;
             timer1.Start();
         }
 
@@ -106,7 +109,6 @@ namespace game_of_life
 
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var a = _width;
             _cells[(50 * _width) + 21].IsAlive = true;
             _cells[(50 * _width) + 22].IsAlive = true;
             _cells[(51 * _width) + 21].IsAlive = true;
@@ -151,6 +153,16 @@ namespace game_of_life
             Refresh();
         }
 
-
+        private void board_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Left)
+            {
+                MouseEventArgs m = e as MouseEventArgs;
+                var i = (int)m.X / (this.board.Width / _width);
+                var j = (int)m.Y / (this.board.Height / _width);
+                _cells[j * _width + i].IsAlive = true;
+                Refresh();
+            }
+        }
     }
 }
