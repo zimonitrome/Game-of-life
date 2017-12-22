@@ -79,7 +79,7 @@ namespace game_of_life
 
         private void startToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            timer1.Interval = 2000;
+            //timer1.Interval = 2000;
             timer1.Start();
         }
 
@@ -105,6 +105,7 @@ namespace game_of_life
                     }
                 }
             }
+
             for (int i = 0; i < _size; i++)
             {
                 _cells[i].updateState();
@@ -176,6 +177,7 @@ namespace game_of_life
                     _cells[j * _width + i].IsAlive = true;
                     _redraw = true;
                     Refresh();
+                    System.Console.WriteLine((j * _width + i));
                 }
             }
         }
@@ -185,6 +187,7 @@ namespace game_of_life
             foreach (var item in _cells)
             {
                 item.IsAlive = false;
+                item.NextLivingState = false;
             }
             _redraw = true;
             Refresh();
@@ -193,6 +196,17 @@ namespace game_of_life
         private void tickToolStripMenuItem_Click(object sender, EventArgs e)
         {
             timer1_Tick(this, new EventArgs());
+        }
+
+        private void testgliderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _cells[10].IsAlive = true;
+            _cells[2].IsAlive = true;
+            _cells[12].IsAlive = true;
+            _cells[22].IsAlive = true;
+            _cells[21].IsAlive = true;
+            _redraw = true;
+            Refresh();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace game_of_life
         [STAThread]
         static void Main()
         {
-            Cell[] cells = new Cell[10*10];
+            Cell[] cells = new Cell[100*100];
             for (int i = 0; i < cells.Length; i++)
             {
                 cells[i] = new Cell();

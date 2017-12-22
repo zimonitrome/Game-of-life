@@ -18,6 +18,7 @@ namespace game_of_life
         
 
         public bool IsAlive { get => _isAlive; set => _isAlive = value; }
+        public bool NextLivingState { get => _nextLivingState; set => _nextLivingState = value; }
 
         public Cell(bool isAlive = false)
         {
@@ -34,18 +35,23 @@ namespace game_of_life
         public bool Rules()
         {
             int aliveNeighboors = 0;
+
             foreach (var item in _neighboor)
             {
                 if (item.Value != null && item.Value.IsAlive)
                     aliveNeighboors++;
             }
-            if (IsAlive && !(aliveNeighboors == 2 || aliveNeighboors == 3))
+            if (IsAlive)
             {
-                _nextLivingState = false;
+                if (aliveNeighboors < 2 || aliveNeighboors > 3)
+                    _nextLivingState = false;
+                else
+                    _nextLivingState = true;
             }
-            else if(aliveNeighboors == 3)
+            else
             {
-                _nextLivingState = true;
+                if (aliveNeighboors == 3)
+                    _nextLivingState = true;
             }
             return _nextLivingState;
         }

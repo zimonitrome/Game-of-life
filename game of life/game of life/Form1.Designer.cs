@@ -34,10 +34,10 @@
             this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.testgliderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tickToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.board.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -91,15 +91,12 @@
             this.testToolStripMenuItem.Text = "test-gun";
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
             // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // testgliderToolStripMenuItem
             // 
             this.testgliderToolStripMenuItem.Name = "testgliderToolStripMenuItem";
             this.testgliderToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
             this.testgliderToolStripMenuItem.Text = "test-glider";
+            this.testgliderToolStripMenuItem.Click += new System.EventHandler(this.testgliderToolStripMenuItem_Click);
             // 
             // resetToolStripMenuItem
             // 
@@ -114,6 +111,10 @@
             this.tickToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
             this.tickToolStripMenuItem.Text = "tick";
             this.tickToolStripMenuItem.Click += new System.EventHandler(this.tickToolStripMenuItem_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
