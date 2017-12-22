@@ -31,14 +31,14 @@ namespace game_of_life
 
         private void board_MouseDown(object sender, MouseEventArgs e)
         {
-            using (Graphics g = this.board.CreateGraphics())
-            {
-                Brush brush = new SolidBrush(Color.Red);
-                int width = this.board.Width / _width;
-                int height = this.board.Height / _width;
-                g.FillRectangle(brush, e.X, e.Y, width, height);
-                brush.Dispose();
-            }
+            //using (Graphics g = this.board.CreateGraphics())
+            //{
+            //    Brush brush = new SolidBrush(Color.Red);
+            //    int width = this.board.Width / _width;
+            //    int height = this.board.Height / _width;
+            //    g.FillRectangle(brush, e.X, e.Y, width, height);
+            //    brush.Dispose();
+            //}
         }
 
         protected override CreateParams CreateParams //make double draw buffer
@@ -79,6 +79,7 @@ namespace game_of_life
 
         private void startToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            timer1.Interval = 2000;
             timer1.Start();
         }
 
@@ -177,6 +178,21 @@ namespace game_of_life
                     Refresh();
                 }
             }
+        }
+
+        private void resetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (var item in _cells)
+            {
+                item.IsAlive = false;
+            }
+            _redraw = true;
+            Refresh();
+        }
+
+        private void tickToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            timer1_Tick(this, new EventArgs());
         }
     }
 }

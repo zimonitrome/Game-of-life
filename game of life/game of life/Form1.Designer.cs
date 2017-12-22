@@ -35,6 +35,9 @@
             this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.testgliderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tickToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.board.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -56,7 +59,10 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.startToolStripMenuItem,
             this.stopToolStripMenuItem,
-            this.testToolStripMenuItem});
+            this.testToolStripMenuItem,
+            this.testgliderToolStripMenuItem,
+            this.resetToolStripMenuItem,
+            this.tickToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1000, 24);
@@ -81,13 +87,33 @@
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
-            this.testToolStripMenuItem.Text = "test";
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
+            this.testToolStripMenuItem.Text = "test-gun";
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
             // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // testgliderToolStripMenuItem
+            // 
+            this.testgliderToolStripMenuItem.Name = "testgliderToolStripMenuItem";
+            this.testgliderToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
+            this.testgliderToolStripMenuItem.Text = "test-glider";
+            // 
+            // resetToolStripMenuItem
+            // 
+            this.resetToolStripMenuItem.Name = "resetToolStripMenuItem";
+            this.resetToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.resetToolStripMenuItem.Text = "reset";
+            this.resetToolStripMenuItem.Click += new System.EventHandler(this.resetToolStripMenuItem_Click);
+            // 
+            // tickToolStripMenuItem
+            // 
+            this.tickToolStripMenuItem.Name = "tickToolStripMenuItem";
+            this.tickToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
+            this.tickToolStripMenuItem.Text = "tick";
+            this.tickToolStripMenuItem.Click += new System.EventHandler(this.tickToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -114,6 +140,9 @@
         private System.Windows.Forms.ToolStripMenuItem stopToolStripMenuItem;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem testgliderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tickToolStripMenuItem;
     }
 }
 
