@@ -15,6 +15,7 @@ namespace game_of_life
         private Cell[] _cells;
         private int _width;
         private int _size;
+        private bool _redraw;
 
         public Form1(Cell[] boardCells, int width, int length)
         {
@@ -22,6 +23,7 @@ namespace game_of_life
             this._cells = boardCells;
             this._width = width;
             this._size = length;
+            this._redraw = false;
 
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             this.UpdateStyles();
@@ -51,29 +53,28 @@ namespace game_of_life
 
         private void board_Paint(object sender, PaintEventArgs e)
         {
-            var a = _cells;
-            var xSize = this.board.Width/_width;
-            var ySize = this.board.Height/ _width;
-            var brush = new SolidBrush(Color.Black);
-            for (int i = 0; i < _width; i++)
+            if (_redraw)
             {
-                for (int j = 0; j < _width; j++)
+                var xSize = this.board.Width / _width;
+                var ySize = this.board.Height / _width;
+                var brush = new SolidBrush(Color.Black);
+                for (int i = 0; i < _width; i++)
                 {
-                    if (_cells[(i*_width)+j].IsAlive)
+                    for (int j = 0; j < _width; j++)
                     {
-                        e.Graphics.FillRectangle(brush, j*xSize,i*ySize, xSize, ySize);
+                        if (_cells[(i * _width) + j].IsAlive)
+                        {
+                            e.Graphics.FillRectangle(brush, j * xSize, i * ySize, xSize, ySize);
+                        }
                     }
                 }
+                _redraw = false;
             }
         }
 
         private void board_Click(object sender, EventArgs e)
         {
-            MouseEventArgs m = e as MouseEventArgs;
-            var i = (int)m.X / (this.board.Width / _width);
-            var j = (int)m.Y / (this.board.Height / _width);
-            _cells[j * _width + i].IsAlive = true;
-            Refresh();
+
         }
 
         private void startToolStripMenuItem_Click(object sender, EventArgs e)
@@ -97,7 +98,10 @@ namespace game_of_life
             {
                 for (int j = 0; j < _width; j++)
                 {
-                    _cells[(i * _width) + j].Rules();
+                    if (_cells[(i * _width) + j].Rules())
+                    {
+                        _redraw = true;
+                    }
                 }
             }
             for (int i = 0; i < _size; i++)
@@ -109,48 +113,54 @@ namespace game_of_life
 
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _cells[(50 * _width) + 21].IsAlive = true;
-            _cells[(50 * _width) + 22].IsAlive = true;
-            _cells[(51 * _width) + 21].IsAlive = true;
-            _cells[(51 * _width) + 22].IsAlive = true;
+            if(_cells.Length>=10000)
+            {
+                _cells[(50 * _width) + 21].IsAlive = true;
+                _cells[(50 * _width) + 22].IsAlive = true;
+                _cells[(51 * _width) + 21].IsAlive = true;
+                _cells[(51 * _width) + 22].IsAlive = true;
 
-            _cells[(51 * _width) + 31].IsAlive = true;
-            _cells[(51 * _width) + 32].IsAlive = true;
-            _cells[(52 * _width) + 30].IsAlive = true;
-            _cells[(52 * _width) + 32].IsAlive = true;
-            _cells[(53 * _width) + 30].IsAlive = true;
-            _cells[(53 * _width) + 31].IsAlive = true;
+                _cells[(51 * _width) + 31].IsAlive = true;
+                _cells[(51 * _width) + 32].IsAlive = true;
+                _cells[(52 * _width) + 30].IsAlive = true;
+                _cells[(52 * _width) + 32].IsAlive = true;
+                _cells[(53 * _width) + 30].IsAlive = true;
+                _cells[(53 * _width) + 31].IsAlive = true;
 
-            _cells[(53 * _width) + 38].IsAlive = true;
-            _cells[(53 * _width) + 39].IsAlive = true;
-            _cells[(54 * _width) + 38].IsAlive = true;
-            _cells[(54 * _width) + 40].IsAlive = true;
-            _cells[(55 * _width) + 38].IsAlive = true;
+                _cells[(53 * _width) + 38].IsAlive = true;
+                _cells[(53 * _width) + 39].IsAlive = true;
+                _cells[(54 * _width) + 38].IsAlive = true;
+                _cells[(54 * _width) + 40].IsAlive = true;
+                _cells[(55 * _width) + 38].IsAlive = true;
 
-            _cells[(48 * _width) + 45].IsAlive = true;
-            _cells[(48 * _width) + 46].IsAlive = true;
-            _cells[(49 * _width) + 44].IsAlive = true;
-            _cells[(49 * _width) + 46].IsAlive = true;
-            _cells[(50 * _width) + 44].IsAlive = true;
-            _cells[(50 * _width) + 45].IsAlive = true;
+                _cells[(48 * _width) + 45].IsAlive = true;
+                _cells[(48 * _width) + 46].IsAlive = true;
+                _cells[(49 * _width) + 44].IsAlive = true;
+                _cells[(49 * _width) + 46].IsAlive = true;
+                _cells[(50 * _width) + 44].IsAlive = true;
+                _cells[(50 * _width) + 45].IsAlive = true;
 
-            _cells[(48 * _width) + 56].IsAlive = true;
-            _cells[(48 * _width) + 57].IsAlive = true;
-            _cells[(49 * _width) + 56].IsAlive = true;
-            _cells[(49 * _width) + 57].IsAlive = true;
+                _cells[(48 * _width) + 56].IsAlive = true;
+                _cells[(48 * _width) + 57].IsAlive = true;
+                _cells[(49 * _width) + 56].IsAlive = true;
+                _cells[(49 * _width) + 57].IsAlive = true;
 
-            _cells[(55 * _width) + 57].IsAlive = true;
-            _cells[(55 * _width) + 58].IsAlive = true;
-            _cells[(56 * _width) + 57].IsAlive = true;
-            _cells[(56 * _width) + 59].IsAlive = true;
-            _cells[(57 * _width) + 57].IsAlive = true;
+                _cells[(55 * _width) + 57].IsAlive = true;
+                _cells[(55 * _width) + 58].IsAlive = true;
+                _cells[(56 * _width) + 57].IsAlive = true;
+                _cells[(56 * _width) + 59].IsAlive = true;
+                _cells[(57 * _width) + 57].IsAlive = true;
 
-            _cells[(58 * _width) + 46].IsAlive = true;
-            _cells[(58 * _width) + 47].IsAlive = true;
-            _cells[(58 * _width) + 48].IsAlive = true;
-            _cells[(59 * _width) + 46].IsAlive = true;
-            _cells[(60 * _width) + 47].IsAlive = true;
-            Refresh();
+                _cells[(58 * _width) + 46].IsAlive = true;
+                _cells[(58 * _width) + 47].IsAlive = true;
+                _cells[(58 * _width) + 48].IsAlive = true;
+                _cells[(59 * _width) + 46].IsAlive = true;
+                _cells[(60 * _width) + 47].IsAlive = true;
+
+                _redraw = true;
+                Refresh();
+            }
+            
         }
 
         private void board_MouseMove(object sender, MouseEventArgs e)
@@ -160,8 +170,12 @@ namespace game_of_life
                 MouseEventArgs m = e as MouseEventArgs;
                 var i = (int)m.X / (this.board.Width / _width);
                 var j = (int)m.Y / (this.board.Height / _width);
-                _cells[j * _width + i].IsAlive = true;
-                Refresh();
+                if ((j * _width + i)< _size && !_cells[j * _width + i].IsAlive)
+                {
+                    _cells[j * _width + i].IsAlive = true;
+                    _redraw = true;
+                    Refresh();
+                }
             }
         }
     }
